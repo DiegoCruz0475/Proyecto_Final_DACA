@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Borrar Propietario{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4 text-center border-danger">
+        <h2 class="text-danger">¿Estás seguro de eliminar este propietario?</h2>
+        <p class="lead">{{ propietario.nombre }} {{ propietario.apellido }} ({{ propietario.dni }})</p>
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> Advertencia: Esto también eliminará todas las propiedades asociadas a este propietario.
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg">Sí, Eliminar</button>
+            <a href="{% url 'ver_propietarios' %}" class="btn btn-secondary btn-lg ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

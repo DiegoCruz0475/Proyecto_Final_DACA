@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Ver Clientes{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #fff3e0;">
+        <h2 class="text-center" style="color: #e65100;">Listado de Clientes</h2>
+        <a href="{% url 'agregar_cliente' %}" class="btn btn-warning mb-3">Agregar Cliente</a>
+        <table class="table table-striped">
+            <thead><tr><th>Nombre</th><th>Email</th><th>Presupuesto</th><th>Acciones</th></tr></thead>
+            <tbody>
+                {% for c in clientes %}
+                <tr>
+                    <td>{{ c.nombre }} {{ c.apellido }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>${{ c.presupuesto_maximo }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_cliente' c.id_cliente %}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_cliente' c.id_cliente %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

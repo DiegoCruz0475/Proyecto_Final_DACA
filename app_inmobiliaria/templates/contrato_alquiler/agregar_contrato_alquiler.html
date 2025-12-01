@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo Contrato Alquiler{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #cfd8dc;"> <!-- Gris -->
+        <h2 class="text-center" style="color: #37474f;">Nuevo Contrato de Alquiler</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Relaciones -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Propiedad:</label>
+                    <select name="id_propiedad" class="form-control">{% for p in propiedades %}<option value="{{ p.id_propiedad }}">{{ p.direccion }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Propietario:</label>
+                    <select name="id_propietario" class="form-control">{% for p in propietarios %}<option value="{{ p.id_propietario }}">{{ p.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Inquilino (Cliente):</label>
+                    <select name="id_cliente" class="form-control">{% for c in clientes %}<option value="{{ c.id_cliente }}">{{ c.nombre }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Agente:</label>
+                    <select name="id_agente" class="form-control">{% for a in agentes %}<option value="{{ a.id_agente }}">{{ a.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <!-- Datos -->
+            <div class="row">
+                <div class="col-md-6 mb-3"><label>Fecha Inicio:</label><input type="date" class="form-control" name="fecha_inicio" required></div>
+                <div class="col-md-6 mb-3"><label>Fecha Fin:</label><input type="date" class="form-control" name="fecha_fin" required></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3"><label>Monto Mensual:</label><input type="number" step="0.01" class="form-control" name="monto_alquiler_mensual" required></div>
+                <div class="col-md-4 mb-3"><label>Depósito:</label><input type="number" step="0.01" class="form-control" name="deposito_garantia" required></div>
+                <div class="col-md-4 mb-3"><label>Estado:</label><input type="text" class="form-control" name="estado_contrato" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Contrato</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

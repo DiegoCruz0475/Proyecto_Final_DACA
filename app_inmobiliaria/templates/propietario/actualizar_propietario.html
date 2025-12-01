@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Actualizar Propietario{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #f0f4c3;">
+        <h2 class="card-title text-center mb-4" style="color: #33691e;">Actualizar Propietario</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3"><label class="form-label">Nombre:</label><input type="text" class="form-control" name="nombre" value="{{ propietario.nombre }}" required></div>
+                <div class="col-md-6 mb-3"><label class="form-label">Apellido:</label><input type="text" class="form-control" name="apellido" value="{{ propietario.apellido }}" required></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3"><label class="form-label">Teléfono:</label><input type="text" class="form-control" name="telefono" value="{{ propietario.telefono }}" required></div>
+                <div class="col-md-6 mb-3"><label class="form-label">DNI:</label><input type="text" class="form-control" name="dni" value="{{ propietario.dni }}" required></div>
+            </div>
+            <div class="mb-3"><label class="form-label">Email:</label><input type="email" class="form-control" name="email" value="{{ propietario.email }}" required></div>
+            <div class="mb-3"><label class="form-label">Dirección:</label><input type="text" class="form-control" name="direccion_propietario" value="{{ propietario.direccion_propietario }}" required></div>
+            
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="{% url 'ver_propietarios' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

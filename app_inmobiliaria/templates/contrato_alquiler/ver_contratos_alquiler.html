@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #cfd8dc;">
+        <h2 class="text-center" style="color: #37474f;">Contratos de Alquiler</h2>
+        <a href="{% url 'agregar_contrato_alquiler' %}" class="btn btn-secondary mb-3">Nuevo Contrato</a>
+        <table class="table table-striped">
+            <thead><tr><th>Propiedad</th><th>Inquilino</th><th>Monto Mensual</th><th>Fin Contrato</th><th>Acciones</th></tr></thead>
+            <tbody>
+                {% for c in contratos %}
+                <tr>
+                    <td>{{ c.id_propiedad.direccion }}</td>
+                    <td>{{ c.id_cliente.nombre }} {{ c.id_cliente.apellido }}</td>
+                    <td>${{ c.monto_alquiler_mensual }}</td>
+                    <td>{{ c.fecha_fin }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_contrato_alquiler' c.id_contrato_alquiler %}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_contrato_alquiler' c.id_contrato_alquiler %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

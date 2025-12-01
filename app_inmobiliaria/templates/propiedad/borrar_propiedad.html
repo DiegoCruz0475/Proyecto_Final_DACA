@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Borrar Propiedad{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4 text-center border-danger">
+        <h2 class="text-danger">¿Estás seguro de eliminar esta propiedad?</h2>
+        <p class="lead">{{ propiedad.tipo_propiedad }} en {{ propiedad.direccion }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg">Sí, Eliminar</button>
+            <a href="{% url 'ver_propiedades' %}" class="btn btn-secondary btn-lg ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

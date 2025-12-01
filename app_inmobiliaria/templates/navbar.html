@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inicio_inmobiliaria' %}">
+            <i class="fas fa-building me-2"></i>Gestión Inmobiliaria
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'inicio_inmobiliaria' %}">Inicio</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Propiedades</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_propiedad' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_propiedades' %}">Ver Lista</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Propietarios</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_propietario' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_propietarios' %}">Ver Lista</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Clientes</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_cliente' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_clientes' %}">Ver Lista</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Agentes</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_agente' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_agentes' %}">Ver Lista</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Visitas</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_visita' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_visitas' %}">Ver Lista</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contratos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'ver_contratos_venta' %}">Venta</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_contratos_alquiler' %}">Alquiler</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #fce4ec;">
+        <h2 class="text-center" style="color: #880e4f;">Actualizar Visita</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Propiedad:</label>
+                <select name="id_propiedad" class="form-control">
+                    {% for p in propiedades %}<option value="{{ p.id_propiedad }}" {% if p.id_propiedad == visita.id_propiedad.id_propiedad %}selected{% endif %}>{{ p.direccion }}</option>{% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Cliente:</label>
+                    <select name="id_cliente" class="form-control">
+                        {% for c in clientes %}<option value="{{ c.id_cliente }}" {% if c.id_cliente == visita.id_cliente.id_cliente %}selected{% endif %}>{{ c.nombre }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Agente:</label>
+                    <select name="id_agente" class="form-control">
+                        {% for a in agentes %}<option value="{{ a.id_agente }}" {% if a.id_agente == visita.id_agente.id_agente %}selected{% endif %}>{{ a.nombre }}</option>{% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3"><label>Fecha:</label><input type="date" class="form-control" name="fecha_visita" value="{{ visita.fecha_visita|date:'Y-m-d' }}" required></div>
+                <div class="col-md-6 mb-3"><label>Hora:</label><input type="time" class="form-control" name="hora_visita" value="{{ visita.hora_visita|time:'H:i' }}" required></div>
+            </div>
+            <div class="mb-3"><label>Comentarios:</label><textarea class="form-control" name="comentarios_cliente">{{ visita.comentarios_cliente }}</textarea></div>
+            <div class="mb-3"><label>Calificación:</label><input type="number" class="form-control" name="calificacion_propiedad" value="{{ visita.calificacion_propiedad }}"></div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

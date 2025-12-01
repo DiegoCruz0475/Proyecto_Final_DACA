@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <div class="card p-4 border-danger">
+        <h2 class="text-danger">Eliminar Contrato Alquiler</h2>
+        <p>¿Eliminar contrato de alquiler de la propiedad {{ contrato.id_propiedad.direccion }}?</p>
+        <form method="post">{% csrf_token %}<button type="submit" class="btn btn-danger">Sí, Eliminar</button><a href="{% url 'ver_contratos_alquiler' %}" class="btn btn-secondary ms-2">Cancelar</a></form>
+    </div>
+</div>
+{% endblock %}

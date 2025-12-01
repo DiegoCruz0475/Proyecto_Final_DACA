@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #cfd8dc;">
+        <h2 class="text-center" style="color: #37474f;">Editar Contrato Alquiler</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Selects con Selected -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Propiedad:</label>
+                    <select name="id_propiedad" class="form-control">{% for p in propiedades %}<option value="{{ p.id_propiedad }}" {% if p.id_propiedad == contrato.id_propiedad.id_propiedad %}selected{% endif %}>{{ p.direccion }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Propietario:</label>
+                    <select name="id_propietario" class="form-control">{% for p in propietarios %}<option value="{{ p.id_propietario }}" {% if p.id_propietario == contrato.id_propietario.id_propietario %}selected{% endif %}>{{ p.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Inquilino:</label>
+                    <select name="id_cliente" class="form-control">{% for c in clientes %}<option value="{{ c.id_cliente }}" {% if c.id_cliente == contrato.id_cliente.id_cliente %}selected{% endif %}>{{ c.nombre }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Agente:</label>
+                    <select name="id_agente" class="form-control">{% for a in agentes %}<option value="{{ a.id_agente }}" {% if a.id_agente == contrato.id_agente.id_agente %}selected{% endif %}>{{ a.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <!-- Datos -->
+            <div class="row">
+                <div class="col-md-6 mb-3"><label>Fecha Inicio:</label><input type="date" class="form-control" name="fecha_inicio" value="{{ contrato.fecha_inicio|date:'Y-m-d' }}" required></div>
+                <div class="col-md-6 mb-3"><label>Fecha Fin:</label><input type="date" class="form-control" name="fecha_fin" value="{{ contrato.fecha_fin|date:'Y-m-d' }}" required></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3"><label>Monto Mensual:</label><input type="number" step="0.01" class="form-control" name="monto_alquiler_mensual" value="{{ contrato.monto_alquiler_mensual|stringformat:'f' }}" required></div>
+                <div class="col-md-4 mb-3"><label>Depósito:</label><input type="number" step="0.01" class="form-control" name="deposito_garantia" value="{{ contrato.deposito_garantia|stringformat:'f' }}" required></div>
+                <div class="col-md-4 mb-3"><label>Estado:</label><input type="text" class="form-control" name="estado_contrato" value="{{ contrato.estado_contrato }}" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

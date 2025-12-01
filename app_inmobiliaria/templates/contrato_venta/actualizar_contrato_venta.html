@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #eceff1;">
+        <h2 class="text-center" style="color: #263238;">Editar Contrato de Venta</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- SELECTS SIMILARES A AGREGAR PERO CON SELECTED -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Propiedad:</label>
+                    <select name="id_propiedad" class="form-control">{% for p in propiedades %}<option value="{{ p.id_propiedad }}" {% if p.id_propiedad == contrato.id_propiedad.id_propiedad %}selected{% endif %}>{{ p.direccion }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Propietario:</label>
+                    <select name="id_propietario" class="form-control">{% for p in propietarios %}<option value="{{ p.id_propietario }}" {% if p.id_propietario == contrato.id_propietario.id_propietario %}selected{% endif %}>{{ p.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Cliente:</label>
+                    <select name="id_cliente" class="form-control">{% for c in clientes %}<option value="{{ c.id_cliente }}" {% if c.id_cliente == contrato.id_cliente.id_cliente %}selected{% endif %}>{{ c.nombre }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Agente:</label>
+                    <select name="id_agente" class="form-control">{% for a in agentes %}<option value="{{ a.id_agente }}" {% if a.id_agente == contrato.id_agente.id_agente %}selected{% endif %}>{{ a.nombre }}</option>{% endfor %}</select>
+                </div>
+            </div>
+            <!-- INPUTS CON VALORES -->
+            <div class="row">
+                <div class="col-md-4 mb-3"><label>Fecha Contrato:</label><input type="date" class="form-control" name="fecha_contrato" value="{{ contrato.fecha_contrato|date:'Y-m-d' }}" required></div>
+                <div class="col-md-4 mb-3"><label>Fecha Cierre:</label><input type="date" class="form-control" name="fecha_cierre" value="{{ contrato.fecha_cierre|date:'Y-m-d' }}" required></div>
+                <div class="col-md-4 mb-3"><label>Estado:</label><input type="text" class="form-control" name="estado_contrato" value="{{ contrato.estado_contrato }}" required></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3"><label>Precio Final:</label><input type="number" step="0.01" class="form-control" name="precio_final" value="{{ contrato.precio_final|stringformat:'f' }}" required></div>
+                <div class="col-md-6 mb-3"><label>Comisión Agente:</label><input type="number" step="0.01" class="form-control" name="comision_agente" value="{{ contrato.comision_agente|stringformat:'f' }}" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #fce4ec;">
+        <h2 class="text-center" style="color: #880e4f;">Libro de Visitas</h2>
+        <a href="{% url 'agregar_visita' %}" class="btn btn-danger mb-3">Nueva Visita</a>
+        <table class="table table-striped">
+            <thead><tr><th>Fecha</th><th>Propiedad</th><th>Cliente</th><th>Agente</th><th>Acciones</th></tr></thead>
+            <tbody>
+                {% for v in visitas %}
+                <tr>
+                    <td>{{ v.fecha_visita }} {{ v.hora_visita }}</td>
+                    <td>{{ v.id_propiedad.direccion }}</td>
+                    <td>{{ v.id_cliente.nombre }}</td>
+                    <td>{{ v.id_agente.nombre }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_visita' v.id_visita %}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_visita' v.id_visita %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

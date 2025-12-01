@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Ver Agentes{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #f3e5f5;">
+        <h2 class="text-center" style="color: #4a148c;">Listado de Agentes</h2>
+        <a href="{% url 'agregar_agente' %}" class="btn btn-primary mb-3" style="background-color: #6a1b9a;">Agregar Agente</a>
+        <table class="table table-striped">
+            <thead><tr><th>Nombre</th><th>Licencia</th><th>Email</th><th>Acciones</th></tr></thead>
+            <tbody>
+                {% for a in agentes %}
+                <tr>
+                    <td>{{ a.nombre }} {{ a.apellido }}</td>
+                    <td>{{ a.licencia_agente }}</td>
+                    <td>{{ a.email }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_agente' a.id_agente %}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_agente' a.id_agente %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
